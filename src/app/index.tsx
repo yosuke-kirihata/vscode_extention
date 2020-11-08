@@ -4,9 +4,26 @@ import * as ReactDOM from "react-dom";
 import "./index.css";
 import HelloComponent from "./hello";
 
+declare global {
+  interface Window {
+    acquireVsCodeApi(): any;
+  }
+}
+
+const vscode = window.acquireVsCodeApi();
+
+//WebView -> VSCode
+vscode.postMessage({
+  type: 'msg',
+  text: 'WebView->VSCode'
+});
+
+//VSCode -> WebView
+window.addEventListener('message', event => {
+  console.log(event); //ctrl + shift + p -> WebView開発者ツール
+});
+
 ReactDOM.render(
-  //HelloComponentをレンダリング。レンダリング先にはindex.htmlのid=helloを指定
-  //HelloComponentにcontentを引き渡している
-  <HelloComponent content={"Hello World!"}/>,
+  <HelloComponent vscode = {""} content={"Hello World!"}/>,
   document.getElementById("root")
 );

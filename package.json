@@ -19,7 +19,15 @@
 				"command": "test-extention.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"menus": {
+			"explorer/context": [
+				{
+				"command": "test-extention.helloWorld",
+				"group": "1_modification"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
